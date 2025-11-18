@@ -4,7 +4,7 @@ import { User } from "../../domain/user.entity";
 import { IUserRepository, IUserRepositoryToken } from "../interfaces/user.repository";
 import { ApiError } from "../../../../core/errors/api-error";
 
-interface CreateUserCommand {
+export interface CreateUserCommand {
   name: string;
   email: string;
 }
