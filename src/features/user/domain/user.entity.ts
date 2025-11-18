@@ -1,0 +1,9 @@
+// src/features/user/domain/user.entity.ts
+export class User {
+  constructor(
+    public readonly id: string,
+    public readonly email: string,
+    public readonly name: string,
+    public readonly createdAt: Date
+  ) {}
+}
