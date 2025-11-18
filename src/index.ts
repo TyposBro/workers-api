@@ -1,27 +1,14 @@
-// import { Hono } from "hono";
-
-// const app = new Hono<{ Bindings: CloudflareBindings }>();
-
-// app.get("/message", (c) => {
-//   return c.text("Hello Hono!");
-// });
-
-// export default app;
-
-// src/index.ts
-
-// THIS MUST BE THE FIRST IMPORT
 import "reflect-metadata";
 
 import { Hono } from "hono";
 import { container } from "tsyringe";
-import { HonoContext } from "./core/types/hono.types";
+import { HonoContext, AppEnv } from "./core/types/hono.types";
 import { registerUserDependencies } from "./features/user/di";
 import { userRoutes } from "./features/user/presentation/user.routes";
 import { globalErrorHandler } from "./core/middleware/error-handler";
 
 // --- Create the Hono App ---
-const app = new Hono<HonoContext>();
+const app = new Hono<AppEnv>();
 
 // --- DI Container Setup Middleware ---
 // This middleware creates a request-scoped DI container.
@@ -50,5 +37,8 @@ app.route("/users", userRoutes);
 
 // --- Health Check Route ---
 app.get("/", (c) => c.text("API is healthy!"));
+
+// --- Demo message for static index.html ---
+app.get("/message", (c) => c.text("Hello from the Worker!"));
 
 export default app;
