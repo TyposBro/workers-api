@@ -13,35 +13,57 @@
   },
   "observability": {
     "enabled": true
+  },
+  // Resource bindings for local development (override per environment below)
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "api_dev",
+      "database_id": "3152cc4f-a235-4bf7-92f7-efc6f83c987e",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "bucket_name": "api-dev",
+      "binding": "R2"
+    }
+  ],
+  // Environment-specific overrides. Use `-e staging` or `-e production` with Wrangler.
+  "env": {
+    "staging": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "api_staging",
+          // Replace with the ID from `wrangler d1 info api_staging`
+          "database_id": "b0dbb305-ef80-460c-a5b6-d34ec4d588ea",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "bucket_name": "api-staging",
+          "binding": "R2"
+        }
+      ]
+    },
+    "production": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "api_prod",
+          // Replace with the ID from `wrangler d1 info api_prod`
+          "database_id": "de09acfd-dd51-478e-86ee-f2f1cf093161",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "bucket_name": "api-prod",
+          "binding": "R2"
+        }
+      ]
+    }
   }
-  /**
-   * Smart Placement
-   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
-   */
-  // "placement": { "mode": "smart" }
-  /**
-   * Bindings
-   * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
-   * databases, object storage, AI inference, real-time communication and more.
-   * https://developers.cloudflare.com/workers/runtime-apis/bindings/
-   */
-  /**
-   * Environment Variables
-   * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
-   */
-  // "vars": { "MY_VARIABLE": "production_value" }
-  /**
-   * Note: Use secrets to store sensitive data.
-   * https://developers.cloudflare.com/workers/configuration/secrets/
-   */
-  /**
-   * Static Assets
-   * https://developers.cloudflare.com/workers/static-assets/binding/
-   */
-  // "assets": { "directory": "./public/", "binding": "ASSETS" }
-  /**
-   * Service Bindings (communicate between multiple Workers)
-   * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
-   */
-  // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
 }

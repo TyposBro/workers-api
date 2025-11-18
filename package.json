@@ -3,8 +3,12 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
+    "dev:staging": "wrangler dev -e staging",
+    "dev:prod": "wrangler dev -e production",
     "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "deploy:staging": "wrangler deploy -e staging --minify",
+    "deploy:prod": "wrangler deploy -e production --minify",
+    "types": "wrangler types"
   },
   "dependencies": {
     "hono": "^4.10.6",
@@ -12,6 +16,7 @@
     "tsyringe": "^4.10.0"
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "wrangler": "^4.47.0"
   }
 }
