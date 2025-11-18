@@ -1,4 +1,4 @@
-// src/features/user/application/use-cases/create-user.use-case.ts
+// src/features/user/application/use-cases/create-user.usecase.ts
 import { inject, injectable } from "tsyringe";
 import { User } from "../../domain/user.entity";
 import { IUserRepository, IUserRepositoryToken } from "../interfaces/user.repository";

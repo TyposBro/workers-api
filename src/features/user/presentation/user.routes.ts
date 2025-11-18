@@ -9,4 +9,4 @@ export const userRoutes = new Hono<AppEnv>();
 const resolveController = (c: HonoContext) => c.get("container").resolve(UserController);
 
 userRoutes.post("/", (c) => resolveController(c).create(c));
-// userRoutes.get('/:id', (c) => resolveController(c).getById(c));
+userRoutes.get("/:id", (c) => resolveController(c).getById(c));
